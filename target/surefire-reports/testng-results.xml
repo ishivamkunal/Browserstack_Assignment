@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="4" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-07-12T14:56:07 IST" name="ElPais Scraper BrowserStack Suite" finished-at="2025-07-12T15:08:07 IST" duration-ms="719319">
+    <groups>
+    </groups>
+    <test started-at="2025-07-12T14:56:07 IST" name="Windows Chrome Test" finished-at="2025-07-12T14:58:07 IST" duration-ms="119615">
+      <class name="tests.ElPaisTest">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.ElPaisTest@4567f35d]" started-at="2025-07-12T14:56:08 IST" name="setUp" finished-at="2025-07-12T14:56:17 IST" duration-ms="9534" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Windows]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[10]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[latest]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testScrapeAndTranslate()[pri:0, instance:tests.ElPaisTest@4567f35d]" started-at="2025-07-12T14:56:17 IST" name="testScrapeAndTranslate" finished-at="2025-07-12T14:58:06 IST" duration-ms="108476" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScrapeAndTranslate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ElPaisTest@4567f35d]" started-at="2025-07-12T14:58:06 IST" name="tearDown" finished-at="2025-07-12T14:58:07 IST" duration-ms="1463" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ElPaisTest -->
+    </test> <!-- Windows Chrome Test -->
+    <test started-at="2025-07-12T14:58:07 IST" name="Windows Firefox Test" finished-at="2025-07-12T15:00:25 IST" duration-ms="138025">
+      <class name="tests.ElPaisTest">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.ElPaisTest@4135c3b]" started-at="2025-07-12T14:58:07 IST" name="setUp" finished-at="2025-07-12T14:58:19 IST" duration-ms="11815" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Windows]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[10]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[latest]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testScrapeAndTranslate()[pri:0, instance:tests.ElPaisTest@4135c3b]" started-at="2025-07-12T14:58:19 IST" name="testScrapeAndTranslate" finished-at="2025-07-12T15:00:23 IST" duration-ms="124571" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScrapeAndTranslate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ElPaisTest@4135c3b]" started-at="2025-07-12T15:00:23 IST" name="tearDown" finished-at="2025-07-12T15:00:25 IST" duration-ms="1639" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ElPaisTest -->
+    </test> <!-- Windows Firefox Test -->
+    <test started-at="2025-07-12T15:00:25 IST" name="macOS Safari Test" finished-at="2025-07-12T15:03:51 IST" duration-ms="206133">
+      <class name="tests.ElPaisTest">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.ElPaisTest@31304f14]" started-at="2025-07-12T15:00:25 IST" name="setUp" finished-at="2025-07-12T15:00:32 IST" duration-ms="6846" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[safari]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[OS X]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Big Sur]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[latest]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testScrapeAndTranslate()[pri:0, instance:tests.ElPaisTest@31304f14]" started-at="2025-07-12T15:00:32 IST" name="testScrapeAndTranslate" finished-at="2025-07-12T15:03:50 IST" duration-ms="197698" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScrapeAndTranslate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ElPaisTest@31304f14]" started-at="2025-07-12T15:03:50 IST" name="tearDown" finished-at="2025-07-12T15:03:51 IST" duration-ms="1588" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ElPaisTest -->
+    </test> <!-- macOS Safari Test -->
+    <test started-at="2025-07-12T15:03:51 IST" name="Android Chrome Test" finished-at="2025-07-12T15:05:58 IST" duration-ms="127230">
+      <class name="tests.ElPaisTest">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.ElPaisTest@5c6648b0]" started-at="2025-07-12T15:03:51 IST" name="setUp" finished-at="2025-07-12T15:04:08 IST" duration-ms="16753" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[android]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[12.0]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[latest]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testScrapeAndTranslate()[pri:0, instance:tests.ElPaisTest@5c6648b0]" started-at="2025-07-12T15:04:08 IST" name="testScrapeAndTranslate" finished-at="2025-07-12T15:05:57 IST" duration-ms="108870" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScrapeAndTranslate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ElPaisTest@5c6648b0]" started-at="2025-07-12T15:05:57 IST" name="tearDown" finished-at="2025-07-12T15:05:58 IST" duration-ms="1606" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ElPaisTest -->
+    </test> <!-- Android Chrome Test -->
+    <test started-at="2025-07-12T15:05:58 IST" name="iOS Safari Test" finished-at="2025-07-12T15:08:07 IST" duration-ms="128236">
+      <class name="tests.ElPaisTest">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.ElPaisTest@128d2484]" started-at="2025-07-12T15:05:58 IST" name="setUp" finished-at="2025-07-12T15:06:19 IST" duration-ms="20213" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[safari]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[ios]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[16]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[latest]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testScrapeAndTranslate()[pri:0, instance:tests.ElPaisTest@128d2484]" started-at="2025-07-12T15:06:19 IST" name="testScrapeAndTranslate" finished-at="2025-07-12T15:08:05 IST" duration-ms="106655" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Article content should not be fallback message expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Article content should not be fallback message expected [false] but found [true]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at tests.ElPaisTest.testScrapeAndTranslate(ElPaisTest.java:79)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1623)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScrapeAndTranslate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ElPaisTest@128d2484]" started-at="2025-07-12T15:08:05 IST" name="tearDown" finished-at="2025-07-12T15:08:07 IST" duration-ms="1361" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ElPaisTest -->
+    </test> <!-- iOS Safari Test -->
+  </suite> <!-- ElPais Scraper BrowserStack Suite -->
+</testng-results>

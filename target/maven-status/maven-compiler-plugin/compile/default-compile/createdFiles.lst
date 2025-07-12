@@ -1,0 +1,5 @@
+scraper\ElPaisScraper.class
+model\Article.class
+utils\BrowserStackCapabilities.class
+utils\Utils.class
+utils\Translator.class

@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="720.415" tests="5" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.specification.version" value="20"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment\target\test-classes;C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment\target\classes;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\ishiv\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\ishiv\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\ishiv\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\ishiv\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\ishiv\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\ishiv\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\ishiv\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\ishiv\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\testng\testng\7.10.1\testng-7.10.1.jar;C:\Users\ishiv\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ishiv\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\ishiv\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.3.1\httpclient5-5.3.1.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2.4\httpcore5-5.2.4.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2.4\httpcore5-h2-5.2.4.jar;C:\Users\ishiv\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\ishiv\.m2\repository\io\github\bonigarcia\webdrivermanager\5.6.3\webdrivermanager-5.6.3.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java\3.3.4\docker-java-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-core\3.3.4\docker-java-core-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-api\3.3.4\docker-java-api-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\ishiv\.m2\repository\commons-io\commons-io\2.13.0\commons-io-2.13.0.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.4\docker-java-transport-httpclient5-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-transport\3.3.4\docker-java-transport-3.3.4.jar;C:\Users\ishiv\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\ishiv\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="20"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IN"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
+    <property name="sun.java.command" value="C:\Users\ishiv\AppData\Local\Temp\surefire9315305162121906161\surefirebooter-20250712145605617_3.jar C:\Users\ishiv\AppData\Local\Temp\surefire9315305162121906161 2025-07-12T14-56-05_322-jvmRun1 surefire-20250712145605617_1tmp surefire_0-20250712145605617_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment\target\test-classes;C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment\target\classes;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\ishiv\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\ishiv\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\ishiv\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\ishiv\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\ishiv\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\ishiv\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\ishiv\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\ishiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\ishiv\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\ishiv\.m2\repository\org\testng\testng\7.10.1\testng-7.10.1.jar;C:\Users\ishiv\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ishiv\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\ishiv\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.3.1\httpclient5-5.3.1.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2.4\httpcore5-5.2.4.jar;C:\Users\ishiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2.4\httpcore5-h2-5.2.4.jar;C:\Users\ishiv\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\ishiv\.m2\repository\io\github\bonigarcia\webdrivermanager\5.6.3\webdrivermanager-5.6.3.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java\3.3.4\docker-java-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-core\3.3.4\docker-java-core-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-api\3.3.4\docker-java-api-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\ishiv\.m2\repository\commons-io\commons-io\2.13.0\commons-io-2.13.0.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\ishiv\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\ishiv\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.4\docker-java-transport-httpclient5-3.3.4.jar;C:\Users\ishiv\.m2\repository\com\github\docker-java\docker-java-transport\3.3.4\docker-java-transport-3.3.4.jar;C:\Users\ishiv\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\ishiv\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\ishiv\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\ishiv"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-04-18"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-20"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\ishiv\AppData\Local\Temp\surefire9315305162121906161\surefirebooter-20250712145605617_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="20.0.1+9-29"/>
+    <property name="user.name" value="ishiv"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="otel.metrics.exporter" value="none"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="otel.traces.exporter" value="none"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\ishiv\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="otel.logs.exporter" value="none"/>
+    <property name="java.io.tmpdir" value="C:\Users\ishiv\AppData\Local\Temp\"/>
+    <property name="java.version" value="20.0.1"/>
+    <property name="user.dir" value="C:\Users\ishiv\Desktop\AI Automation\BrowserStack Assignment"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-20\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\ishiv\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\ImageMagick-7.1.1-Q16;C:\ffmpeg\ffmpeg-2024-07-18-git-fa5a605542-full_build\bin;C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Users\ishiv\Downloads\apache-maven-3.9.8-bin\apache-maven-3.9.8\bin;C:\Users\ishiv\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\ishiv\AppData\Local\Programs\Python\Python311\;C:\Users\ishiv\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.1\bin;C:\Users\ishiv\AppD;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\dotnet\;C:\Users\ishiv\scoop\shims;C:\Users\ishiv\.local\bin;C:\Users\ishiv\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.1\bin;;C:\Users\ishiv\AppData\Roaming\npm;C:\Program Files\JetBrains\PyCharm Community Edition 2023.3.4\bin;;C:\Users\ishiv\Desktop\Shivam\Work\apache-ant-1.10.14\bin;C:\Users\ishiv\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ishiv\AppData\Local\Programs\Python\Python312;C:\Users\ishiv\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\ishiv\Downloads\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin;C:\Users\ishiv\AppData\Local\Microsoft\WinGet\Links;C:\Users\ishiv\Desktop\openCV\opencv\build\java\x64;C:\Users\ishiv\AppData\Local\Android\Sdk\platform-tools;C:\Users\ishiv\AppData\Local\Programs\Ollama;C:\Users\ishiv\AppData\Local\Programs\cursor\resources\app\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="20.0.1+9-29"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="64.0"/>
+  </properties>
+  <testcase name="testScrapeAndTranslate" classname="tests.ElPaisTest" time="108.499">
+    <system-out><![CDATA[[INFO] Starting test on BrowserStack - Windows 10 chrome latest
+[INFO] Window maximized for desktop platform
+[INFO] Cookie popup handled successfully
+[INFO] Detected desktop platform, using direct navigation
+[INFO] Waiting 3 seconds after clicking Opinion link...
+[INFO] Found article link 1: https://elpais.com/opinion/2025-07-12/a-menos-schengen-menos-europa.html
+[INFO] Found article link 2: https://elpais.com/opinion/2025-07-12/en-interes-de-los-menores.html
+[INFO] Found article link 3: https://elpais.com/opinion/2025-07-12/singularidad.html
+[INFO] Found article link 4: https://elpais.com/opinion/2025-07-12/el-mar-ya-no-es-eterno.html
+[INFO] Found article link 5: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 3428 characters
+[INFO] Downloaded image for article 1
+[INFO] Successfully scraped article: A menos Schengen, menos Europa
+[DEBUG] Content length: 3428 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 2898 characters
+[INFO] Downloaded image for article 2
+[INFO] Successfully scraped article: En interés de los menores
+[DEBUG] Content length: 2898 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 667 characters
+[INFO] Downloaded image for article 3
+[INFO] Successfully scraped article: Singularidad
+[DEBUG] Content length: 667 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 704 characters
+[INFO] Downloaded image for article 4
+[INFO] Successfully scraped article: El mar ya no es eterno
+[DEBUG] Content length: 704 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 1471 characters
+[INFO] Downloaded image for article 5
+[INFO] Successfully scraped article: Tiempos muertos
+[DEBUG] Content length: 1471 characters
+[INFO] Waiting 3 seconds after scraping article...
+[ASSERT] Article 1 title: A menos Schengen, menos Europa
+[ASSERT] Article 1 content length: 3428 characters
+[ASSERT] Article 1 image: images/image1.jpg (30366 bytes)
+[ASSERT] Article 2 title: En interés de los menores
+[ASSERT] Article 2 content length: 2898 characters
+[ASSERT] Article 2 image: images/image2.jpg (25259 bytes)
+[ASSERT] Article 3 title: Singularidad
+[ASSERT] Article 3 content length: 667 characters
+[ASSERT] Article 3 image: images/image3.jpg (25759 bytes)
+[ASSERT] Article 4 title: El mar ya no es eterno
+[ASSERT] Article 4 content length: 704 characters
+[ASSERT] Article 4 image: images/image4.jpg (11951 bytes)
+[ASSERT] Article 5 title: Tiempos muertos
+[ASSERT] Article 5 content length: 1471 characters
+[ASSERT] Article 5 image: images/image5.jpg (29721 bytes)
+Repeated words (more than twice):
+de: 118 times
+con: 7 times
+lo: 8 times
+aos: 5 times
+menores: 3 times
+schengen: 6 times
+est: 3 times
+derecho: 5 times
+pases: 3 times
+ya: 3 times
+europea: 3 times
+del: 19 times
+parte: 3 times
+ue: 4 times
+son: 3 times
+han: 4 times
+menor: 3 times
+un: 18 times
+tambin: 4 times
+entre: 3 times
+las: 14 times
+como: 9 times
+sino: 4 times
+desde: 5 times
+ms: 10 times
+el: 43 times
+en: 55 times
+al: 8 times
+hace: 3 times
+neza: 3 times
+es: 13 times
+este: 3 times
+sobre: 4 times
+judicial: 3 times
+as: 4 times
+riesgo: 4 times
+esta: 5 times
+ciudad: 6 times
+pleno: 3 times
+controles: 3 times
+respuesta: 3 times
+ejemplo: 3 times
+llegar: 3 times
+que: 44 times
+no: 11 times
+gnero: 3 times
+pero: 4 times
+hijos: 5 times
+interior: 3 times
+mxicosonia: 7 times
+sus: 5 times
+los: 36 times
+por: 18 times
+se: 21 times
+pies: 3 times
+para: 9 times
+si: 3 times
+otro: 4 times
+principio: 3 times
+estudio: 3 times
+sin: 4 times
+a: 37 times
+alemania: 3 times
+su: 8 times
+medida: 3 times
+una: 8 times
+solo: 4 times
+violencia: 6 times
+mujeres: 3 times
+o: 7 times
+visitas: 3 times
+ante: 3 times
+la: 51 times
+cada: 3 times
+y: 33 times
+ha: 6 times
+potestad: 3 times
+embargo: 3 times
+quin: 3 times
+porque: 3 times
+[SUCCESS] Successfully scraped 5 articles
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Jul 12, 2025 2:56:08 PM org.openqa.selenium.remote.tracing.opentelemetry.OpenTelemetryTracer createTracer
+INFO: Using OpenTelemetry for tracing
+[WARNING] Translation failed for title: A menos Schengen, menos Europa - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: En interés de los menores - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Singularidad - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: El mar ya no es eterno - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Tiempos muertos - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+]]></system-err>
+  </testcase>
+  <testcase name="testScrapeAndTranslate" classname="tests.ElPaisTest" time="124.592">
+    <system-out><![CDATA[[INFO] Browser session closed
+[INFO] Starting test on BrowserStack - Windows 10 firefox latest
+[INFO] Window maximized for desktop platform
+[INFO] Cookie popup handled successfully
+[INFO] Detected desktop platform, using direct navigation
+[INFO] Waiting 3 seconds after clicking Opinion link...
+[INFO] Found article link 1: https://elpais.com/opinion/2025-07-12/a-menos-schengen-menos-europa.html
+[INFO] Found article link 2: https://elpais.com/opinion/2025-07-12/en-interes-de-los-menores.html
+[INFO] Found article link 3: https://elpais.com/opinion/2025-07-12/singularidad.html
+[INFO] Found article link 4: https://elpais.com/opinion/2025-07-12/el-mar-ya-no-es-eterno.html
+[INFO] Found article link 5: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 3428 characters
+[INFO] Downloaded image for article 1
+[INFO] Successfully scraped article: A menos Schengen, menos Europa
+[DEBUG] Content length: 3428 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 2898 characters
+[INFO] Downloaded image for article 2
+[INFO] Successfully scraped article: En interés de los menores
+[DEBUG] Content length: 2898 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 667 characters
+[INFO] Downloaded image for article 3
+[INFO] Successfully scraped article: Singularidad
+[DEBUG] Content length: 667 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 704 characters
+[INFO] Downloaded image for article 4
+[INFO] Successfully scraped article: El mar ya no es eterno
+[DEBUG] Content length: 704 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 1471 characters
+[INFO] Downloaded image for article 5
+[INFO] Successfully scraped article: Tiempos muertos
+[DEBUG] Content length: 1471 characters
+[INFO] Waiting 3 seconds after scraping article...
+[ASSERT] Article 1 title: A menos Schengen, menos Europa
+[ASSERT] Article 1 content length: 3428 characters
+[ASSERT] Article 1 image: images/image1.jpg (30366 bytes)
+[ASSERT] Article 2 title: En interés de los menores
+[ASSERT] Article 2 content length: 2898 characters
+[ASSERT] Article 2 image: images/image2.jpg (25259 bytes)
+[ASSERT] Article 3 title: Singularidad
+[ASSERT] Article 3 content length: 667 characters
+[ASSERT] Article 3 image: images/image3.jpg (25759 bytes)
+[ASSERT] Article 4 title: El mar ya no es eterno
+[ASSERT] Article 4 content length: 704 characters
+[ASSERT] Article 4 image: images/image4.jpg (11951 bytes)
+[ASSERT] Article 5 title: Tiempos muertos
+[ASSERT] Article 5 content length: 1471 characters
+[ASSERT] Article 5 image: images/image5.jpg (29721 bytes)
+Repeated words (more than twice):
+de: 118 times
+con: 7 times
+lo: 8 times
+aos: 5 times
+menores: 3 times
+schengen: 6 times
+est: 3 times
+derecho: 5 times
+pases: 3 times
+ya: 3 times
+europea: 3 times
+del: 19 times
+parte: 3 times
+ue: 4 times
+son: 3 times
+han: 4 times
+menor: 3 times
+un: 18 times
+tambin: 4 times
+entre: 3 times
+las: 14 times
+como: 9 times
+sino: 4 times
+desde: 5 times
+ms: 10 times
+el: 43 times
+en: 55 times
+al: 8 times
+hace: 3 times
+neza: 3 times
+es: 13 times
+este: 3 times
+sobre: 4 times
+judicial: 3 times
+as: 4 times
+riesgo: 4 times
+esta: 5 times
+ciudad: 6 times
+pleno: 3 times
+controles: 3 times
+respuesta: 3 times
+ejemplo: 3 times
+llegar: 3 times
+que: 44 times
+no: 11 times
+gnero: 3 times
+pero: 4 times
+hijos: 5 times
+interior: 3 times
+mxicosonia: 7 times
+sus: 5 times
+los: 36 times
+por: 18 times
+se: 21 times
+pies: 3 times
+para: 9 times
+si: 3 times
+otro: 4 times
+principio: 3 times
+estudio: 3 times
+sin: 4 times
+a: 37 times
+alemania: 3 times
+su: 8 times
+medida: 3 times
+una: 8 times
+solo: 4 times
+violencia: 6 times
+mujeres: 3 times
+o: 7 times
+visitas: 3 times
+ante: 3 times
+la: 51 times
+cada: 3 times
+y: 33 times
+ha: 6 times
+potestad: 3 times
+embargo: 3 times
+quin: 3 times
+porque: 3 times
+[SUCCESS] Successfully scraped 5 articles
+]]></system-out>
+    <system-err><![CDATA[[WARNING] Translation failed for title: A menos Schengen, menos Europa - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: En interés de los menores - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Singularidad - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: El mar ya no es eterno - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Tiempos muertos - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+]]></system-err>
+  </testcase>
+  <testcase name="testScrapeAndTranslate" classname="tests.ElPaisTest" time="197.744">
+    <system-out><![CDATA[[INFO] Browser session closed
+[INFO] Starting test on BrowserStack - OS X Big Sur safari latest
+[INFO] Window maximized for desktop platform
+[INFO] Cookie popup handled successfully
+[INFO] Detected desktop platform, using direct navigation
+[INFO] Waiting 3 seconds after clicking Opinion link...
+[INFO] Found article link 1: https://elpais.com/opinion/2025-07-12/a-menos-schengen-menos-europa.html
+[INFO] Found article link 2: https://elpais.com/opinion/2025-07-12/en-interes-de-los-menores.html
+[INFO] Found article link 3: https://elpais.com/opinion/2025-07-12/singularidad.html
+[INFO] Found article link 4: https://elpais.com/opinion/2025-07-12/el-mar-ya-no-es-eterno.html
+[INFO] Found article link 5: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 4247 characters
+[INFO] Downloaded image for article 1
+[INFO] Successfully scraped article: A menos Schengen, menos Europa
+[DEBUG] Content length: 4247 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 3721 characters
+[INFO] Downloaded image for article 2
+[INFO] Successfully scraped article: En interés de los menores
+[DEBUG] Content length: 3721 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 5689 characters
+[INFO] Downloaded image for article 3
+[INFO] Successfully scraped article: Singularidad
+[DEBUG] Content length: 5689 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 6933 characters
+[INFO] Downloaded image for article 4
+[INFO] Successfully scraped article: El mar ya no es eterno
+[DEBUG] Content length: 6933 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 1909 characters
+[INFO] Downloaded image for article 5
+[INFO] Successfully scraped article: Tiempos muertos
+[DEBUG] Content length: 1909 characters
+[INFO] Waiting 3 seconds after scraping article...
+[ASSERT] Article 1 title: A menos Schengen, menos Europa
+[ASSERT] Article 1 content length: 4247 characters
+[ASSERT] Article 1 image: images/image1.jpg (30366 bytes)
+[ASSERT] Article 2 title: En interés de los menores
+[ASSERT] Article 2 content length: 3721 characters
+[ASSERT] Article 2 image: images/image2.jpg (25259 bytes)
+[ASSERT] Article 3 title: Singularidad
+[ASSERT] Article 3 content length: 5689 characters
+[ASSERT] Article 3 image: images/image3.jpg (25759 bytes)
+[ASSERT] Article 4 title: El mar ya no es eterno
+[ASSERT] Article 4 content length: 6933 characters
+[ASSERT] Article 4 image: images/image4.jpg (11951 bytes)
+[ASSERT] Article 5 title: Tiempos muertos
+[ASSERT] Article 5 content length: 1909 characters
+[ASSERT] Article 5 image: images/image5.jpg (29721 bytes)
+Repeated words (more than twice):
+aos: 7 times
+menores: 3 times
+europea: 3 times
+del: 42 times
+toda: 5 times
+menos: 3 times
+menor: 4 times
+tambin: 7 times
+propia: 6 times
+persona: 5 times
+qu: 4 times
+al: 15 times
+personas: 3 times
+ao: 6 times
+muchos: 3 times
+as: 11 times
+circulacin: 3 times
+suscripcin: 12 times
+mostrar: 5 times
+horizonte: 3 times
+acceder: 4 times
+aqu: 11 times
+vida: 4 times
+interior: 3 times
+sus: 10 times
+por: 28 times
+se: 54 times
+pies: 5 times
+dispositivo: 8 times
+si: 4 times
+mis: 3 times
+hotel: 7 times
+email: 4 times
+lectura: 4 times
+pasado: 3 times
+a: 82 times
+ser: 4 times
+su: 17 times
+gran: 3 times
+o: 20 times
+cuentasen: 4 times
+todo: 4 times
+otropor: 4 times
+te: 4 times
+aire: 4 times
+continas: 4 times
+y: 91 times
+quema: 3 times
+mensaje: 5 times
+todos: 3 times
+quin: 7 times
+reverencia: 3 times
+algo: 4 times
+de: 253 times
+tu: 37 times
+schengen: 6 times
+pases: 3 times
+parte: 4 times
+arena: 3 times
+ue: 4 times
+siglo: 4 times
+manos: 4 times
+han: 5 times
+permitir: 4 times
+un: 41 times
+veraneantes: 3 times
+hay: 7 times
+accede: 4 times
+sonia: 3 times
+sino: 5 times
+pas: 3 times
+el: 109 times
+en: 121 times
+puedes: 4 times
+es: 24 times
+sobre: 4 times
+cambia: 4 times
+riesgo: 4 times
+algunos: 4 times
+ciudad: 6 times
+controles: 3 times
+compartiendo: 4 times
+respuesta: 3 times
+recomendamos: 4 times
+que: 111 times
+gnero: 3 times
+pero: 10 times
+hijos: 8 times
+mxicosonia: 4 times
+nos: 7 times
+otro: 15 times
+compartir: 4 times
+principio: 4 times
+aqusi: 4 times
+sin: 7 times
+todava: 3 times
+digital: 4 times
+otra: 6 times
+medida: 5 times
+una: 39 times
+solo: 6 times
+trminos: 4 times
+uno: 7 times
+ha: 6 times
+podr: 4 times
+potestad: 3 times
+indefinida: 4 times
+embargo: 3 times
+porque: 4 times
+casa: 3 times
+saber: 4 times
+derecho: 5 times
+ya: 11 times
+caso: 5 times
+yo: 3 times
+podrs: 4 times
+casi: 3 times
+agua: 4 times
+como: 29 times
+frente: 3 times
+cara: 3 times
+hace: 5 times
+neza: 3 times
+judicial: 3 times
+mxico: 5 times
+pleno: 3 times
+usuario: 8 times
+esos: 4 times
+usando: 8 times
+leyendo: 4 times
+contratar: 4 times
+incluso: 6 times
+tanto: 3 times
+los: 73 times
+premium: 4 times
+hacen: 3 times
+cuanto: 3 times
+era: 7 times
+experiencia: 8 times
+libre: 3 times
+estosi: 4 times
+vuestra: 4 times
+quieres: 6 times
+mar: 4 times
+comedor: 3 times
+alemania: 3 times
+cuando: 9 times
+violencia: 6 times
+mujeres: 3 times
+visitas: 3 times
+esa: 4 times
+territorio: 3 times
+ante: 3 times
+viendo: 4 times
+cada: 12 times
+la: 135 times
+tiempo: 4 times
+ese: 3 times
+le: 3 times
+condiciones: 5 times
+noche: 3 times
+eso: 3 times
+ests: 4 times
+con: 27 times
+lo: 18 times
+est: 13 times
+padres: 3 times
+pie: 3 times
+calor: 3 times
+son: 6 times
+entre: 9 times
+las: 35 times
+desde: 8 times
+contrasea: 4 times
+superioridad: 5 times
+ms: 17 times
+campo: 3 times
+singularidad: 12 times
+este: 14 times
+afectando: 4 times
+villas: 3 times
+esta: 7 times
+eran: 3 times
+pastienes: 4 times
+cambiar: 4 times
+ni: 3 times
+empresa: 4 times
+brisa: 3 times
+llegar: 3 times
+ejemplo: 4 times
+no: 34 times
+media: 4 times
+forma: 6 times
+nombre: 3 times
+muy: 3 times
+para: 22 times
+leer: 4 times
+estudio: 3 times
+cuenta: 21 times
+continuar: 4 times
+puede: 4 times
+os: 4 times
+decides: 4 times
+suscripcinsi: 4 times
+igualdad: 3 times
+aadir: 8 times
+aunque: 3 times
+playa: 5 times
+modalidad: 4 times
+consultar: 4 times
+personalizar: 4 times
+[SUCCESS] Successfully scraped 5 articles
+]]></system-out>
+    <system-err><![CDATA[[WARNING] Translation failed for title: A menos Schengen, menos Europa - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: En interés de los menores - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Singularidad - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: El mar ya no es eterno - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Tiempos muertos - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+]]></system-err>
+  </testcase>
+  <testcase name="testScrapeAndTranslate" classname="tests.ElPaisTest" time="108.891">
+    <system-out><![CDATA[[INFO] Browser session closed
+[INFO] Starting test on BrowserStack - android 12.0 chrome latest
+[INFO] Window maximize not supported on mobile platform
+[INFO] Cookie popup handled successfully
+[INFO] Detected mobile platform, using hamburger menu navigation
+[INFO] Hamburger menu clicked
+[INFO] Opinion link clicked on mobile using mobile-specific XPath
+[INFO] Waiting 3 seconds after clicking Opinion link...
+[INFO] Found article link 1: https://elpais.com/opinion/2025-07-12/a-menos-schengen-menos-europa.html
+[INFO] Found article link 2: https://elpais.com/opinion/2025-07-12/en-interes-de-los-menores.html
+[INFO] Found article link 3: https://elpais.com/opinion/2025-07-12/singularidad.html
+[INFO] Found article link 4: https://elpais.com/opinion/2025-07-12/el-mar-ya-no-es-eterno.html
+[INFO] Found article link 5: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 3428 characters
+[INFO] Downloaded image for article 1
+[INFO] Successfully scraped article: A menos Schengen, menos Europa
+[DEBUG] Content length: 3428 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 2898 characters
+[INFO] Downloaded image for article 2
+[INFO] Successfully scraped article: En interés de los menores
+[DEBUG] Content length: 2898 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 667 characters
+[INFO] Downloaded image for article 3
+[INFO] Successfully scraped article: Singularidad
+[DEBUG] Content length: 667 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using default XPath: 704 characters
+[INFO] Downloaded image for article 4
+[INFO] Successfully scraped article: El mar ya no es eterno
+[DEBUG] Content length: 704 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 1435 characters
+[INFO] Downloaded image for article 5
+[INFO] Successfully scraped article: Tiempos muertos
+[DEBUG] Content length: 1435 characters
+[INFO] Waiting 3 seconds after scraping article...
+[ASSERT] Article 1 title: A menos Schengen, menos Europa
+[ASSERT] Article 1 content length: 3428 characters
+[ASSERT] Article 1 image: images/image1.jpg (30366 bytes)
+[ASSERT] Article 2 title: En interés de los menores
+[ASSERT] Article 2 content length: 2898 characters
+[ASSERT] Article 2 image: images/image2.jpg (25259 bytes)
+[ASSERT] Article 3 title: Singularidad
+[ASSERT] Article 3 content length: 667 characters
+[ASSERT] Article 3 image: images/image3.jpg (25759 bytes)
+[ASSERT] Article 4 title: El mar ya no es eterno
+[ASSERT] Article 4 content length: 704 characters
+[ASSERT] Article 4 image: images/image4.jpg (11951 bytes)
+[ASSERT] Article 5 title: Tiempos muertos
+[ASSERT] Article 5 content length: 1435 characters
+[ASSERT] Article 5 image: images/image5.jpg (29721 bytes)
+Repeated words (more than twice):
+de: 117 times
+con: 7 times
+lo: 8 times
+aos: 5 times
+menores: 3 times
+schengen: 6 times
+est: 3 times
+derecho: 5 times
+pases: 3 times
+ya: 3 times
+europea: 3 times
+del: 19 times
+parte: 3 times
+ue: 4 times
+son: 3 times
+han: 4 times
+menor: 3 times
+un: 18 times
+tambin: 4 times
+entre: 3 times
+las: 14 times
+como: 9 times
+sino: 4 times
+desde: 5 times
+ms: 10 times
+el: 43 times
+en: 55 times
+al: 8 times
+hace: 3 times
+neza: 3 times
+es: 13 times
+este: 3 times
+sobre: 4 times
+judicial: 3 times
+as: 4 times
+riesgo: 4 times
+esta: 5 times
+ciudad: 6 times
+pleno: 3 times
+controles: 3 times
+respuesta: 3 times
+ejemplo: 3 times
+llegar: 3 times
+que: 44 times
+no: 11 times
+gnero: 3 times
+pero: 4 times
+hijos: 5 times
+interior: 3 times
+mxicosonia: 7 times
+sus: 5 times
+los: 36 times
+por: 18 times
+se: 21 times
+pies: 3 times
+para: 9 times
+si: 3 times
+otro: 4 times
+principio: 3 times
+estudio: 3 times
+sin: 4 times
+a: 37 times
+alemania: 3 times
+su: 8 times
+medida: 3 times
+una: 8 times
+solo: 4 times
+violencia: 6 times
+mujeres: 3 times
+o: 7 times
+visitas: 3 times
+ante: 3 times
+la: 51 times
+cada: 3 times
+y: 33 times
+ha: 6 times
+potestad: 3 times
+embargo: 3 times
+quin: 3 times
+porque: 3 times
+[SUCCESS] Successfully scraped 5 articles
+]]></system-out>
+    <system-err><![CDATA[[WARNING] Translation failed for title: A menos Schengen, menos Europa - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: En interés de los menores - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Singularidad - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: El mar ya no es eterno - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Tiempos muertos - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+]]></system-err>
+  </testcase>
+  <testcase name="testScrapeAndTranslate" classname="tests.ElPaisTest" time="106.662">
+    <failure message="Article content should not be fallback message expected [false] but found [true]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Article content should not be fallback message expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at tests.ElPaisTest.testScrapeAndTranslate(ElPaisTest.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+]]></failure>
+    <system-out><![CDATA[[INFO] Browser session closed
+[INFO] Starting test on BrowserStack - ios 16 safari latest
+[INFO] Window maximized for desktop platform
+[INFO] Cookie popup not found or already handled
+[INFO] Detected mobile platform, using hamburger menu navigation
+[INFO] Hamburger menu clicked
+[INFO] Opinion link clicked on mobile using mobile-specific XPath
+[INFO] Waiting 3 seconds after clicking Opinion link...
+[INFO] Found article link 1: https://elpais.com/opinion/2025-07-12/a-menos-schengen-menos-europa.html
+[INFO] Found article link 2: https://elpais.com/opinion/2025-07-12/en-interes-de-los-menores.html
+[INFO] Found article link 3: https://elpais.com/opinion/2025-07-12/singularidad.html
+[INFO] Found article link 4: https://elpais.com/opinion/2025-07-12/el-mar-ya-no-es-eterno.html
+[INFO] Found article link 5: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 170 characters
+[INFO] Downloaded image for article 1
+[INFO] Successfully scraped article: A menos Schengen, menos Europa
+[DEBUG] Content length: 170 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 149 characters
+[INFO] Downloaded image for article 2
+[INFO] Successfully scraped article: En interés de los menores
+[DEBUG] Content length: 149 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 139 characters
+[INFO] Downloaded image for article 3
+[INFO] Successfully scraped article: Singularidad
+[DEBUG] Content length: 139 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[DEBUG] Content extracted using all article text: 146 characters
+[INFO] Downloaded image for article 4
+[INFO] Successfully scraped article: El mar ya no es eterno
+[DEBUG] Content length: 146 characters
+[INFO] Waiting 3 seconds after scraping article...
+[INFO] Cookie popup not found or already handled
+[INFO] Downloaded image for article 5
+[INFO] Successfully scraped article: Tiempos muertos
+[DEBUG] Content length: 18 characters
+[INFO] Waiting 3 seconds after scraping article...
+[ASSERT] Article 1 title: A menos Schengen, menos Europa
+[ASSERT] Article 1 content length: 170 characters
+[ASSERT] Article 1 image: images/image1.jpg (30366 bytes)
+[ASSERT] Article 2 title: En interés de los menores
+[ASSERT] Article 2 content length: 149 characters
+[ASSERT] Article 2 image: images/image2.jpg (25259 bytes)
+[ASSERT] Article 3 title: Singularidad
+[ASSERT] Article 3 content length: 139 characters
+[ASSERT] Article 3 image: images/image3.jpg (25759 bytes)
+[ASSERT] Article 4 title: El mar ya no es eterno
+[ASSERT] Article 4 content length: 146 characters
+[ASSERT] Article 4 image: images/image4.jpg (11951 bytes)
+[ASSERT] Article 5 title: Tiempos muertos
+]]></system-out>
+    <system-err><![CDATA[[WARNING] No content found for article: https://elpais.com/opinion/2025-07-07/tiempos-muertos.html
+[WARNING] Translation failed for title: A menos Schengen, menos Europa - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: En interés de los menores - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: Singularidad - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+[WARNING] Translation failed for title: El mar ya no es eterno - Unexpected translation API response: {"message":"You have exceeded the DAILY quota for Multi Translate on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction"}
+]]></system-err>
+  </testcase>
+</testsuite>
