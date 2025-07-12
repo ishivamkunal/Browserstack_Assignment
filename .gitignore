@@ -25,4 +25,4 @@ Thumbs.db
 *.log
 
 # Config files with sensitive data
-# src/main/resources/config.properties 
+src/main/resources/config.properties 

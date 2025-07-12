@@ -6,10 +6,26 @@ import java.util.Map;
 
 public class BrowserStackCapabilities {
 
-    private static final String BROWSERSTACK_USERNAME = "shivamkunal_jfTmJw";
-    private static final String BROWSERSTACK_ACCESS_KEY = "RS2WkGMMDvjdsbxfECp8";
-    private static final String BROWSERSTACK_URL = "https://" + BROWSERSTACK_USERNAME + ":" + BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
-
+    private static final String CONFIG_FILE = "config.properties";
+    private static final String BROWSERSTACK_USERNAME;
+    private static final String BROWSERSTACK_ACCESS_KEY;
+    private static final String BROWSERSTACK_URL;
+    
+    static {
+        Properties prop = new Properties();
+        try (InputStream input = BrowserStackCapabilities.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
+            if (input != null) {
+                prop.load(input);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to load config.properties");
+        }
+    
+        BROWSERSTACK_USERNAME = prop.getProperty("BROWSERSTACK_USERNAME", "");
+        BROWSERSTACK_ACCESS_KEY = prop.getProperty("BROWSERSTACK_ACCESS_KEY", "");
+        BROWSERSTACK_URL = "https://" + BROWSERSTACK_USERNAME + ":" + BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+    }
+    
     public static DesiredCapabilities getWindowsChromeCapabilities() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browserName", "chrome");
