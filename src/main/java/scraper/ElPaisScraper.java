@@ -1,25 +1,28 @@
 package scraper;
 
-import model.Article;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.TimeoutException;
-import utils.Utils;
-import java.util.*;
-import java.io.*;
-import java.net.*;
-import java.nio.file.Files;
-import java.util.Properties;
-import org.openqa.selenium.StaleElementReferenceException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import model.Article;
+import utils.Utils;
 
 public class ElPaisScraper {
-    // Constants (configurable via config.properties)
     private static final String CONFIG_FILE = "config.properties";
     private static final String BASE_URL;
     private static final String OPINION_LINK_XPATH;
@@ -67,14 +70,11 @@ public class ElPaisScraper {
         this.js = (JavascriptExecutor) driver;
     }
 
-    // Handle cookie popup with JavaScript click
     private void handleCookiePopup() {
         try {
-            // Wait for cookie popup to appear
             WebElement cookieAcceptBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//*[@id='didomi-notice-agree-button']")));
             
-            // Use JavaScript click instead of regular click
             js.executeScript("arguments[0].click();", cookieAcceptBtn);
             
             // Wait for popup to disappear
@@ -90,13 +90,11 @@ public class ElPaisScraper {
         }
     }
 
-    // Main method: Scrape first N opinion articles
     public List<Article> scrapeFirstNOpinionArticles() {
         List<Article> articles = new ArrayList<>();
         try {
             driver.get(BASE_URL);
             
-            // Maximize window only for desktop platforms
             try {
                 driver.manage().window().maximize();
                 System.out.println("[INFO] Window maximized for desktop platform");
@@ -104,10 +102,8 @@ public class ElPaisScraper {
                 System.out.println("[INFO] Window maximize not supported on mobile platform");
             }
             
-            // Handle cookie popup with JavaScript click
             handleCookiePopup();
             
-            // Check if we're on mobile platform and handle navigation accordingly
             String userAgent = ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;").toString().toLowerCase();
             boolean isMobile = userAgent.contains("android") || userAgent.contains("iphone") || userAgent.contains("ipad");
             
@@ -123,7 +119,6 @@ public class ElPaisScraper {
                     // Wait a bit for menu to open
                     try { Thread.sleep(1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
                     
-                    // Now click on Opinion link using mobile-specific XPath
                     WebElement opinionLink = wait.until(ExpectedConditions.elementToBeClickable(
                         By.xpath(MOBILE_OPINION_LINK_XPATH)));
                     js.executeScript("arguments[0].click();", opinionLink);
@@ -133,14 +128,13 @@ public class ElPaisScraper {
                     throw e;
                 }
             } else {
-                // Desktop navigation: Direct click on opinion link
+            
                 System.out.println("[INFO] Detected desktop platform, using direct navigation");
                 WebElement opinionLink = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath(OPINION_LINK_XPATH)));
                 js.executeScript("arguments[0].click();", opinionLink);
             }
             
-            // Dynamic wait after clicking opinion link
             System.out.println("[INFO] Waiting " + DYNAMIC_WAIT_AFTER_CLICK + " seconds after clicking Opinion link...");
             try { Thread.sleep(DYNAMIC_WAIT_AFTER_CLICK * 1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
             
@@ -153,7 +147,6 @@ public class ElPaisScraper {
                     articles.add(article);
                     imageIndex++;
                     
-                    // Dynamic wait after each article
                     System.out.println("[INFO] Waiting " + DYNAMIC_WAIT_AFTER_CLICK + " seconds after scraping article...");
                     try { Thread.sleep(DYNAMIC_WAIT_AFTER_CLICK * 1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
                     
@@ -169,11 +162,9 @@ public class ElPaisScraper {
         return articles;
     }
 
-    // Fetch unique opinion article links
     private Set<String> fetchOpinionArticleLinks() {
         Set<String> uniqueLinks = new LinkedHashSet<>();
         
-        // Wait for articles to load
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(ARTICLE_BLOCK_XPATH)));
         
         for (int i = 1; i <= ARTICLE_COUNT; i++) {
@@ -195,7 +186,6 @@ public class ElPaisScraper {
         return uniqueLinks;
     }
 
-    // Scrape a single article (title, content, image)
     private Article scrapeArticle(String url, int imageIndex) {
         int maxRetries = 3;
         int attempt = 0;
@@ -204,10 +194,8 @@ public class ElPaisScraper {
             try {
                 driver.get(url);
                 
-                // Handle cookie popup on article page with JavaScript click
                 handleCookiePopup();
                 
-                // Wait for page to load completely
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(ARTICLE_TITLE_TAG)));
                 
                 String title = driver.findElement(By.tagName(ARTICLE_TITLE_TAG)).getText();
@@ -237,7 +225,7 @@ public class ElPaisScraper {
                     throw se;
                 }
                 System.err.println("[WARNING] Stale element, retrying (" + attempt + "/" + maxRetries + "): " + url);
-                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); } // Longer wait for stale element
+                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
             } catch (Exception e) {
                 attempt++;
                 if (attempt >= maxRetries) {
@@ -245,19 +233,16 @@ public class ElPaisScraper {
                     throw e;
                 }
                 System.err.println("[WARNING] Error scraping article, retrying (" + attempt + "/" + maxRetries + "): " + url + " - " + e.getMessage());
-                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); } // Longer wait for retry
+                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); } 
             }
         }
         
-        // This should never be reached, but just in case
         throw new RuntimeException("Failed to scrape article after " + maxRetries + " attempts: " + url);
     }
 
-    // Enhanced content extraction with multiple fallback strategies
     private String extractArticleContent() {
         StringBuilder content = new StringBuilder();
         
-        // Strategy 1: Try the default paragraph XPath
         try {
             List<WebElement> paragraphElements = driver.findElements(By.xpath(ARTICLE_PARAGRAPH_XPATH));
             for (WebElement paragraphElement : paragraphElements) {
@@ -267,7 +252,6 @@ public class ElPaisScraper {
                 }
             }
             
-            // If we got substantial content, return it
             if (content.length() > 100) {
                 System.out.println("[DEBUG] Content extracted using default XPath: " + content.length() + " characters");
                 return content.toString();
@@ -276,7 +260,6 @@ public class ElPaisScraper {
             System.out.println("[DEBUG] Default XPath failed: " + e.getMessage());
         }
         
-        // Strategy 2: Try article-body div
         try {
             List<WebElement> bodyElements = driver.findElements(By.xpath("//article//div[contains(@class,'article-body')]//p"));
             if (bodyElements.isEmpty()) {
@@ -298,7 +281,6 @@ public class ElPaisScraper {
             System.out.println("[DEBUG] Article-body XPath failed: " + e.getMessage());
         }
         
-        // Strategy 3: Try data-testid attribute
         try {
             List<WebElement> testElements = driver.findElements(By.xpath("//div[@data-testid='article-content']//p"));
             if (testElements.isEmpty()) {
@@ -320,7 +302,6 @@ public class ElPaisScraper {
             System.out.println("[DEBUG] Data-testid XPath failed: " + e.getMessage());
         }
         
-        // Strategy 4: Try any div with article content
         try {
             List<WebElement> divElements = driver.findElements(By.xpath("//article//div[contains(@class,'content') or contains(@class,'text') or contains(@class,'body')]//p"));
             if (divElements.isEmpty()) {
@@ -342,7 +323,6 @@ public class ElPaisScraper {
             System.out.println("[DEBUG] Generic div XPath failed: " + e.getMessage());
         }
         
-        // Strategy 5: Last resort - get all text from article
         try {
             WebElement articleElement = driver.findElement(By.tagName("article"));
             if (articleElement != null) {
@@ -355,8 +335,6 @@ public class ElPaisScraper {
         } catch (Exception e) {
             System.out.println("[DEBUG] All article text failed: " + e.getMessage());
         }
-        
-        // If all strategies fail, return fallback message
         System.err.println("[WARNING] No content found for article: " + driver.getCurrentUrl());
         return "[NO CONTENT FOUND]";
     }

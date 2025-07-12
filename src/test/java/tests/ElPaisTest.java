@@ -1,22 +1,25 @@
 package tests;
 
-import model.Article;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
-import org.testng.Assert;
-import scraper.ElPaisScraper;
-import utils.BrowserStackCapabilities;
-import utils.Translator;
-import utils.Utils;
-
 import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.stream.Collectors;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import model.Article;
+import scraper.ElPaisScraper;
+import utils.BrowserStackCapabilities;
+import utils.Translator;
+import utils.Utils;
 
 public class ElPaisTest {
     
@@ -64,22 +67,18 @@ public class ElPaisTest {
             // Scrape articles
             List<Article> articles = scraper.scrapeFirstNOpinionArticles();
             
-            // Assertions for each article
             for (int i = 0; i < articles.size(); i++) {
                 Article article = articles.get(i);
                 
-                // Assert title is not empty
                 Assert.assertNotNull(article.getTitle(), "Article title should not be null");
                 Assert.assertFalse(article.getTitle().trim().isEmpty(), "Article title should not be empty");
                 System.out.println("[ASSERT] Article " + (i + 1) + " title: " + article.getTitle());
                 
-                // Assert content is not empty and not fallback message
                 Assert.assertNotNull(article.getContent(), "Article content should not be null");
                 Assert.assertFalse(article.getContent().trim().isEmpty(), "Article content should not be empty");
                 Assert.assertFalse(article.getContent().equals("[NO CONTENT FOUND]"), "Article content should not be fallback message");
                 System.out.println("[ASSERT] Article " + (i + 1) + " content length: " + article.getContent().length() + " characters");
                 
-                // Assert image file exists if imageUrl is not null
                 if (article.getImageUrl() != null && !article.getImageUrl().trim().isEmpty()) {
                     String imageFileName = "images/image" + (i + 1) + ".jpg";
                     File imageFile = new File(imageFileName);
@@ -101,8 +100,7 @@ public class ElPaisTest {
                     System.err.println("[WARNING] Translation failed for title: " + article.getTitle() + " - " + e.getMessage());
                 }
             }
-            
-            // Analyze repeated words in all content
+           
             String allContent = articles.stream()
                 .map(Article::getContent)
                 .collect(Collectors.joining(" "));
