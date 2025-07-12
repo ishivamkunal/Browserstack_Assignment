@@ -71,9 +71,20 @@ The scraper successfully:
 - **Rapid Translate API**: For text translation
 - **Maven**: For dependency management
 
+## ✅ Assignment Checklist
+
+✔️ Scraped 5 articles from El País "Opinion" section  
+✔️ Printed title + content in Spanish  
+✔️ Downloaded and saved cover images  
+✔️ Translated headers to English using Rapid API  
+✔️ Printed translated headers  
+✔️ Analyzed headers for repeated words  
+✔️ Executed tests locally  
+✔️ Executed tests on BrowserStack across 5 browser-device combinations
+
 ## Notes
 
 - Uses JavaScript clicks for better cross-browser compatibility
 - Handles mobile navigation with hamburger menu
 - Configured for W3C WebDriver protocol
-- Sensitive credentials are excluded from Git tracking 
+- Sensitive credentials are excluded from Git tracking
