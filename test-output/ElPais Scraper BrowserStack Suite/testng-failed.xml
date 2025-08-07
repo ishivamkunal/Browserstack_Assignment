@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="methods" name="Failed suite [ElPais Scraper BrowserStack Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="methods" name="macOS Safari Test(failed)">
+    <parameter name="os" value="OS X"/>
+    <parameter name="osVersion" value="Big Sur"/>
+    <parameter name="browser" value="safari"/>
+    <parameter name="browserVersion" value="latest"/>
+    <classes>
+      <class name="tests.ElPaisTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="testScrapeTranslateAnalyze"/>
+        </methods>
+      </class> <!-- tests.ElPaisTest -->
+    </classes>
+  </test> <!-- macOS Safari Test(failed) -->
+  <test thread-count="5" parallel="methods" name="iOS Safari Test(failed)">
+    <parameter name="os" value="ios"/>
+    <parameter name="osVersion" value="16"/>
+    <parameter name="browser" value="safari"/>
+    <parameter name="browserVersion" value="latest"/>
+    <classes>
+      <class name="tests.ElPaisTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="testScrapeTranslateAnalyze"/>
+        </methods>
+      </class> <!-- tests.ElPaisTest -->
+    </classes>
+  </test> <!-- iOS Safari Test(failed) -->
+</suite> <!-- Failed suite [ElPais Scraper BrowserStack Suite] -->

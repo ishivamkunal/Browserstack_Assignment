@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Local Chrome Test Suite">
+    <test name="Local Chrome Only">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="os" value="local"/>
+        <parameter name="osVersion" value="local"/>
+        <parameter name="browserVersion" value="latest"/>
+        <classes>
+            <class name="tests.ElPaisTest"/>
+        </classes>
+    </test>
+</suite>

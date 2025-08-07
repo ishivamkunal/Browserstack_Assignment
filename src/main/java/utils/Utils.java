@@ -1,12 +1,33 @@
 package utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
 import java.io.*;
-import java.net.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.*;
 
 public class Utils {
-    // Download image from URL and save to fileName
+
+    public static WebDriver getLocalDriver(String browser) {
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+            case "safari":
+                return new SafariDriver();
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
+    }
+
     public static void downloadImage(String imageUrl, String fileName) {
         if (imageUrl == null || imageUrl.isEmpty()) return;
         try (InputStream in = new URL(imageUrl).openStream()) {
@@ -16,7 +37,6 @@ public class Utils {
         }
     }
 
-    // Analyze repeated words in a list of headers (words repeated more than twice)
     public static Map<String, Integer> repeatedWordAnalysis(List<String> headers) {
         Map<String, Integer> wordCount = new HashMap<>();
         for (String header : headers) {
@@ -34,8 +54,7 @@ public class Utils {
         }
         return repeated;
     }
-    
-    // Analyze repeated words in a single text content
+
     public static Map<String, Integer> analyzeRepeatedWords(String content) {
         Map<String, Integer> wordCount = new HashMap<>();
         String[] words = content.toLowerCase().replaceAll("[^a-z ]", "").split("\\s+");

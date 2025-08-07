@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ElPais Scraper BrowserStack Suite" parallel="methods" thread-count="5">
-    
+
     <test name="Windows Chrome Test">
         <parameter name="browser" value="chrome"/>
         <parameter name="os" value="Windows"/>
@@ -10,12 +10,12 @@
         <classes>
             <class name="tests.ElPaisTest">
                 <methods>
-                    <include name="testScrapeAndTranslate"/>
+                    <include name="testScrapeTranslateAnalyze"/>
                 </methods>
             </class>
         </classes>
     </test>
-    
+
     <test name="Windows Firefox Test">
         <parameter name="browser" value="firefox"/>
         <parameter name="os" value="Windows"/>
@@ -24,12 +24,12 @@
         <classes>
             <class name="tests.ElPaisTest">
                 <methods>
-                    <include name="testScrapeAndTranslate"/>
+                    <include name="testScrapeTranslateAnalyze"/>
                 </methods>
             </class>
         </classes>
     </test>
-    
+
     <test name="macOS Safari Test">
         <parameter name="browser" value="safari"/>
         <parameter name="os" value="OS X"/>
@@ -38,12 +38,12 @@
         <classes>
             <class name="tests.ElPaisTest">
                 <methods>
-                    <include name="testScrapeAndTranslate"/>
+                    <include name="testScrapeTranslateAnalyze"/>
                 </methods>
             </class>
         </classes>
     </test>
-    
+
     <test name="Android Chrome Test">
         <parameter name="browser" value="chrome"/>
         <parameter name="os" value="android"/>
@@ -52,12 +52,12 @@
         <classes>
             <class name="tests.ElPaisTest">
                 <methods>
-                    <include name="testScrapeAndTranslate"/>
+                    <include name="testScrapeTranslateAnalyze"/>
                 </methods>
             </class>
         </classes>
     </test>
-    
+
     <test name="iOS Safari Test">
         <parameter name="browser" value="safari"/>
         <parameter name="os" value="ios"/>
@@ -66,10 +66,10 @@
         <classes>
             <class name="tests.ElPaisTest">
                 <methods>
-                    <include name="testScrapeAndTranslate"/>
+                    <include name="testScrapeTranslateAnalyze"/>
                 </methods>
             </class>
         </classes>
     </test>
-    
-</suite> 
+
+</suite>

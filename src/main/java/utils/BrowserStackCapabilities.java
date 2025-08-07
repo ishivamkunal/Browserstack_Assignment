@@ -1,8 +1,12 @@
 package utils;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class BrowserStackCapabilities {
 
@@ -10,7 +14,8 @@ public class BrowserStackCapabilities {
     private static final String BROWSERSTACK_USERNAME;
     private static final String BROWSERSTACK_ACCESS_KEY;
     private static final String BROWSERSTACK_URL;
-    
+    private static final boolean USE_BROWSERSTACK;
+
     static {
         Properties prop = new Properties();
         try (InputStream input = BrowserStackCapabilities.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
@@ -20,125 +25,45 @@ public class BrowserStackCapabilities {
         } catch (IOException e) {
             System.err.println("Failed to load config.properties");
         }
-    
+
         BROWSERSTACK_USERNAME = prop.getProperty("BROWSERSTACK_USERNAME", "");
         BROWSERSTACK_ACCESS_KEY = prop.getProperty("BROWSERSTACK_ACCESS_KEY", "");
+        USE_BROWSERSTACK = Boolean.parseBoolean(prop.getProperty("USE_BROWSERSTACK", "false"));
         BROWSERSTACK_URL = "https://" + BROWSERSTACK_USERNAME + ":" + BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     }
-    
-    public static DesiredCapabilities getWindowsChromeCapabilities() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "chrome");
-        caps.setCapability("browserVersion", "latest");
-        Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("os", "Windows");
-        bstackOptions.put("osVersion", "10");
-        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
-        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
-        bstackOptions.put("sessionName", "ElPais Windows Chrome");
-        bstackOptions.put("buildName", "ElPais Build");
-        bstackOptions.put("debug", true);
-        bstackOptions.put("consoleLogs", "info");
-        bstackOptions.put("networkLogs", true);
-        bstackOptions.put("video", true);
-        bstackOptions.put("idleTimeout", 300);
-        caps.setCapability("bstack:options", bstackOptions);
-        return caps;
+
+    public static boolean isUseBrowserStack() {
+        return USE_BROWSERSTACK;
     }
 
-    public static DesiredCapabilities getWindowsFirefoxCapabilities() {
+    public static DesiredCapabilities getCapabilities(String browser, String os, String osVersion, String deviceName, String browserVersion, String sessionName) {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "firefox");
-        caps.setCapability("browserVersion", "latest");
-        Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("os", "Windows");
-        bstackOptions.put("osVersion", "10");
-        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
-        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
-        bstackOptions.put("sessionName", "ElPais Windows Firefox");
-        bstackOptions.put("buildName", "ElPais Build");
-        bstackOptions.put("debug", true);
-        bstackOptions.put("consoleLogs", "info");
-        bstackOptions.put("networkLogs", true);
-        bstackOptions.put("video", true);
-        bstackOptions.put("idleTimeout", 300);
-        caps.setCapability("bstack:options", bstackOptions);
-        return caps;
-    }
-
-    public static DesiredCapabilities getMacSafariCapabilities() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "safari");
-        caps.setCapability("browserVersion", "latest");
-        Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("os", "OS X");
-        bstackOptions.put("osVersion", "Big Sur");
-        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
-        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
-        bstackOptions.put("sessionName", "ElPais macOS Safari");
-        bstackOptions.put("buildName", "ElPais Build");
-        bstackOptions.put("debug", true);
-        bstackOptions.put("consoleLogs", "info");
-        bstackOptions.put("networkLogs", true);
-        bstackOptions.put("video", true);
-        bstackOptions.put("idleTimeout", 300);
-        caps.setCapability("bstack:options", bstackOptions);
-        return caps;
-    }
-
-    public static DesiredCapabilities getAndroidChromeCapabilities() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "chrome");
-        Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("deviceName", "Samsung Galaxy S22");
-        bstackOptions.put("osVersion", "12.0");
-        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
-        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
-        bstackOptions.put("sessionName", "ElPais Android Chrome");
-        bstackOptions.put("buildName", "ElPais Build");
-        bstackOptions.put("debug", true);
-        bstackOptions.put("consoleLogs", "info");
-        bstackOptions.put("networkLogs", true);
-        bstackOptions.put("video", true);
-        bstackOptions.put("idleTimeout", 300);
-        caps.setCapability("bstack:options", bstackOptions);
-        return caps;
-    }
-
-    public static DesiredCapabilities getIOSSafariCapabilities() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "safari");
-        Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("deviceName", "iPhone 14");
-        bstackOptions.put("osVersion", "16");
-        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
-        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
-        bstackOptions.put("sessionName", "ElPais iOS Safari");
-        bstackOptions.put("buildName", "ElPais Build");
-        bstackOptions.put("debug", true);
-        bstackOptions.put("consoleLogs", "info");
-        bstackOptions.put("networkLogs", true);
-        bstackOptions.put("video", true);
-        bstackOptions.put("idleTimeout", 300);
-        caps.setCapability("bstack:options", bstackOptions);
-        return caps;
-    }
-
-    public static DesiredCapabilities getCapabilities(String browser, String os, String osVersion, String browserVersion) {
-        // Fallback for custom config, not used in testng.xml
-        if (browser.equalsIgnoreCase("chrome") && os.equalsIgnoreCase("windows")) {
-            return getWindowsChromeCapabilities();
-        } else if (browser.equalsIgnoreCase("firefox") && os.equalsIgnoreCase("windows")) {
-            return getWindowsFirefoxCapabilities();
-        } else if (browser.equalsIgnoreCase("safari") && os.equalsIgnoreCase("os x")) {
-            return getMacSafariCapabilities();
-        } else if (browser.equalsIgnoreCase("chrome") && os.equalsIgnoreCase("android")) {
-            return getAndroidChromeCapabilities();
-        } else if (browser.equalsIgnoreCase("safari") && os.equalsIgnoreCase("ios")) {
-            return getIOSSafariCapabilities();
-        } else {
-            return getWindowsChromeCapabilities();
+        caps.setCapability("browserName", browser);
+        if (browserVersion != null && !browserVersion.isEmpty()) {
+            caps.setCapability("browserVersion", browserVersion);
         }
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("userName", BROWSERSTACK_USERNAME);
+        bstackOptions.put("accessKey", BROWSERSTACK_ACCESS_KEY);
+        bstackOptions.put("sessionName", sessionName);
+        bstackOptions.put("buildName", "ElPais Build");
+        bstackOptions.put("debug", true);
+        bstackOptions.put("consoleLogs", "info");
+        bstackOptions.put("networkLogs", true);
+        bstackOptions.put("video", true);
+        bstackOptions.put("idleTimeout", 300);
+
+        if (deviceName != null && !deviceName.isEmpty()) {
+            bstackOptions.put("deviceName", deviceName);
+            bstackOptions.put("osVersion", osVersion);
+        } else {
+            bstackOptions.put("os", os);
+            bstackOptions.put("osVersion", osVersion);
+        }
+
+        caps.setCapability("bstack:options", bstackOptions);
+        return caps;
     }
 
     public static String getBrowserStackUrl() {

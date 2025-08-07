@@ -1,68 +1,60 @@
+// ✅ Simplified ElPaisScraper.java with fallback XPaths from config
 package scraper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import model.Article;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import model.Article;
 import utils.Utils;
+
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class ElPaisScraper {
     private static final String CONFIG_FILE = "config.properties";
-    private static final String BASE_URL;
-    private static final String OPINION_LINK_XPATH;
-    private static final String MOBILE_OPINION_LINK_XPATH;
-    private static final String ARTICLE_BLOCK_XPATH;
-    private static final String ARTICLE_LINK_XPATH;
-    private static final String ARTICLE_TITLE_TAG;
-    private static final String ARTICLE_PARAGRAPH_XPATH;
-    private static final String ARTICLE_IMAGE_XPATH;
-    private static final String IMAGE_FOLDER;
-    private static final int ARTICLE_COUNT;
-    private static final int WAIT_TIMEOUT;
-    private static final int DYNAMIC_WAIT_AFTER_CLICK;
+    private static final Properties props = new Properties();
+
+    private static final int MAX_RETRY = 3;
+    private static final int RETRY_DELAY = 2000;
 
     static {
-        Properties prop = new Properties();
         try (InputStream input = ElPaisScraper.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
-            if (input != null) {
-                prop.load(input);
-            }
-        } catch (IOException e) {
-            System.err.println("Could not load config.properties, using defaults.");
-        }
-        BASE_URL = prop.getProperty("BASE_URL", "https://elpais.com/");
-        OPINION_LINK_XPATH = prop.getProperty("OPINION_LINK_XPATH", "//div[@class='sm _df']//a[normalize-space()='Opinión']");
-        MOBILE_OPINION_LINK_XPATH = prop.getProperty("MOBILE_OPINION_LINK_XPATH", "//*[@id=\"hamburger_container\"]/nav/div[1]/ul/li[2]/a");
-        ARTICLE_BLOCK_XPATH = prop.getProperty("ARTICLE_BLOCK_XPATH", "//main//article[.//a[contains(@href, '/opinion/') and not(contains(@href, '/editoriales')) and not(contains(@href, '/tribuna'))]]");
-        ARTICLE_LINK_XPATH = prop.getProperty("ARTICLE_LINK_XPATH", ".//a[contains(@href, '/opinion/') and not(contains(@href, '/editoriales')) and not(contains(@href, '/tribuna'))]");
-        ARTICLE_TITLE_TAG = prop.getProperty("ARTICLE_TITLE_TAG", "h1");
-        ARTICLE_PARAGRAPH_XPATH = prop.getProperty("ARTICLE_PARAGRAPH_XPATH", "//article//p");
-        ARTICLE_IMAGE_XPATH = prop.getProperty("ARTICLE_IMAGE_XPATH", "//article//img");
-        IMAGE_FOLDER = prop.getProperty("IMAGE_FOLDER", "images/");
-        ARTICLE_COUNT = Integer.parseInt(prop.getProperty("ARTICLE_COUNT", "5"));
-        WAIT_TIMEOUT = Integer.parseInt(prop.getProperty("WAIT_TIMEOUT", "10"));
-        DYNAMIC_WAIT_AFTER_CLICK = Integer.parseInt(prop.getProperty("DYNAMIC_WAIT_AFTER_CLICK", "3"));
+            if (input != null) props.load(input);
+        } catch (Exception ignored) {}
+    }
+
+    private static String get(String key, String def) {
+        return props.getProperty(key, def);
+    }
+
+    private static int getInt(String key, int def) {
+        return Integer.parseInt(props.getProperty(key, String.valueOf(def)));
     }
 
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final JavascriptExecutor js;
+
+    private final String BASE_URL = get("BASE_URL", "https://elpais.com/");
+    private final String OPINION_XPATH = get("OPINION_LINK_XPATH", "//*[@id='csw']/div[1]/nav/div/a[2]");
+    private final String MOBILE_OPINION_XPATH = get("MOBILE_OPINION_LINK_XPATH", "//*[@id='hamburger_container']/nav/div[1]/ul/li[2]/a");
+    private final String ARTICLE_BLOCK_XPATH = get("ARTICLE_BLOCK_XPATH", "//main//article[.//h2/a[contains(@href, '/opinion/')]]");
+    private final String ARTICLE_LINK_XPATH = get("ARTICLE_LINK_XPATH", "//h2/a");
+    private final String TITLE_TAG = get("ARTICLE_TITLE_TAG", "h1");
+    private final String PARAGRAPH_XPATH = get("ARTICLE_PARAGRAPH_XPATH", "//article//p");
+    private final String IMAGE_XPATH = get("ARTICLE_IMAGE_XPATH", "//article//img");
+    private final String IMAGE_FOLDER = get("IMAGE_FOLDER", "images/");
+    private final int ARTICLE_COUNT = getInt("ARTICLE_COUNT", 5);
+    private final int WAIT_TIMEOUT = getInt("WAIT_TIMEOUT", 10);
+    private final int AFTER_CLICK_WAIT = getInt("DYNAMIC_WAIT_AFTER_CLICK", 3);
+    private final List<String> FALLBACK_XPATHS = Arrays.asList((PARAGRAPH_XPATH + ";" +
+            "//article//div[contains(@class,'article-body')]//p;" +
+            "//div[@data-testid='article-content']//p;" +
+            "//article//div[contains(@class,'content') or contains(@class,'text') or contains(@class,'body')]//p")
+            .split("\\s*;\\s*"));
 
     public ElPaisScraper(WebDriver driver) {
         this.driver = driver;
@@ -70,272 +62,119 @@ public class ElPaisScraper {
         this.js = (JavascriptExecutor) driver;
     }
 
-    private void handleCookiePopup() {
-        try {
-            WebElement cookieAcceptBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//*[@id='didomi-notice-agree-button']")));
-            
-            js.executeScript("arguments[0].click();", cookieAcceptBtn);
-            
-            // Wait for popup to disappear
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(
-                By.xpath("//*[@id='didomi-notice-agree-button']")));
-            
-            System.out.println("[INFO] Cookie popup handled successfully");
-            
-        } catch (TimeoutException e) {
-            System.out.println("[INFO] Cookie popup not found or already handled");
-        } catch (Exception e) {
-            System.err.println("[WARNING] Error handling cookie popup: " + e.getMessage());
-        }
+    public List<String> scrapeArticleTitles() {
+        List<Article> articles = scrapeFirstNOpinionArticles();
+        List<String> titles = new ArrayList<>();
+        for (Article a : articles) titles.add(a.getTitle());
+        return titles;
     }
 
     public List<Article> scrapeFirstNOpinionArticles() {
         List<Article> articles = new ArrayList<>();
-        try {
-            driver.get(BASE_URL);
-            
+        driver.get(BASE_URL);
+        try { driver.manage().window().maximize(); } catch (Exception ignored) {}
+
+        handleCookie();
+        navigateToOpinion();
+
+        Set<String> links = fetchLinks();
+        int index = 1;
+        for (String url : links) {
             try {
-                driver.manage().window().maximize();
-                System.out.println("[INFO] Window maximized for desktop platform");
-            } catch (Exception e) {
-                System.out.println("[INFO] Window maximize not supported on mobile platform");
-            }
-            
-            handleCookiePopup();
-            
-            String userAgent = ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;").toString().toLowerCase();
-            boolean isMobile = userAgent.contains("android") || userAgent.contains("iphone") || userAgent.contains("ipad");
-            
-            if (isMobile) {
-                // Mobile navigation: Click hamburger menu first, then opinion link
-                System.out.println("[INFO] Detected mobile platform, using hamburger menu navigation");
-                try {
-                    WebElement hamburgerBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id='btn_open_hamburger']")));
-                    js.executeScript("arguments[0].click();", hamburgerBtn);
-                    System.out.println("[INFO] Hamburger menu clicked");
-                    
-                    // Wait a bit for menu to open
-                    try { Thread.sleep(1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
-                    
-                    WebElement opinionLink = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath(MOBILE_OPINION_LINK_XPATH)));
-                    js.executeScript("arguments[0].click();", opinionLink);
-                    System.out.println("[INFO] Opinion link clicked on mobile using mobile-specific XPath");
-                } catch (Exception e) {
-                    System.err.println("[ERROR] Mobile navigation failed: " + e.getMessage());
-                    throw e;
-                }
-            } else {
-            
-                System.out.println("[INFO] Detected desktop platform, using direct navigation");
-                WebElement opinionLink = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath(OPINION_LINK_XPATH)));
-                js.executeScript("arguments[0].click();", opinionLink);
-            }
-            
-            System.out.println("[INFO] Waiting " + DYNAMIC_WAIT_AFTER_CLICK + " seconds after clicking Opinion link...");
-            try { Thread.sleep(DYNAMIC_WAIT_AFTER_CLICK * 1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
-            
-            Set<String> articleLinks = fetchOpinionArticleLinks();
-            int imageIndex = 1;
-            
-            for (String articleUrl : articleLinks) {
-                try {
-                    Article article = scrapeArticle(articleUrl, imageIndex);
-                    articles.add(article);
-                    imageIndex++;
-                    
-                    System.out.println("[INFO] Waiting " + DYNAMIC_WAIT_AFTER_CLICK + " seconds after scraping article...");
-                    try { Thread.sleep(DYNAMIC_WAIT_AFTER_CLICK * 1000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
-                    
-                } catch (StaleElementReferenceException se) {
-                    System.err.println("[ERROR] Stale element for article: " + articleUrl + " - " + se.getMessage());
-                } catch (Exception e) {
-                    System.err.println("[ERROR] Failed to scrape article: " + articleUrl + " - " + e.getMessage());
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("[ERROR] Failed to scrape opinion articles: " + e.getMessage());
+                Article article = scrapeArticle(url, index);
+                articles.add(article);
+                Thread.sleep(AFTER_CLICK_WAIT * 1000L);
+                index++;
+            } catch (Exception ignored) {}
         }
         return articles;
     }
 
-    private Set<String> fetchOpinionArticleLinks() {
-        Set<String> uniqueLinks = new LinkedHashSet<>();
-        
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(ARTICLE_BLOCK_XPATH)));
-        
-        for (int i = 1; i <= ARTICLE_COUNT; i++) {
-            String indexedBlockXpath = "(" + ARTICLE_BLOCK_XPATH + ")[" + i + "]" + ARTICLE_LINK_XPATH;
-            try {
-                WebElement articleLinkElement = wait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath(indexedBlockXpath)));
-                String href = articleLinkElement.getAttribute("href");
-                if (href != null && !href.trim().isEmpty()) {
-                    uniqueLinks.add(href);
-                    System.out.println("[INFO] Found article link " + i + ": " + href);
-                }
-            } catch (TimeoutException e) {
-                System.err.println("[WARNING] Article link " + i + " not found within timeout");
-            } catch (Exception e) {
-                System.err.println("[ERROR] Error fetching article link " + i + ": " + e.getMessage());
+    private void handleCookie() {
+        try {
+            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.id("didomi-notice-agree-button")));
+            js.executeScript("arguments[0].click();", btn);
+        } catch (Exception ignored) {}
+    }
+
+    private void navigateToOpinion() {
+        String ua = js.executeScript("return navigator.userAgent").toString().toLowerCase();
+        boolean isMobile = ua.contains("android") || ua.contains("iphone") || ua.contains("ipad");
+        try {
+            if (isMobile) {
+                js.executeScript("arguments[0].click();",
+                    wait.until(ExpectedConditions.elementToBeClickable(By.id("btn_open_hamburger"))));
+                Thread.sleep(1000);
+                js.executeScript("arguments[0].click();",
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(MOBILE_OPINION_XPATH))));
+            } else {
+                js.executeScript("arguments[0].click();",
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(OPINION_XPATH))));
             }
+        } catch (Exception e) {
+            throw new RuntimeException("Navigation to Opinion failed", e);
         }
-        return uniqueLinks;
+        try { Thread.sleep(AFTER_CLICK_WAIT * 1000L); } catch (InterruptedException ignored) {}
+    }
+
+    private Set<String> fetchLinks() {
+        Set<String> links = new LinkedHashSet<>();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(ARTICLE_BLOCK_XPATH)));
+        IntStream.rangeClosed(1, ARTICLE_COUNT).forEach(i -> {
+            String xpath = "(" + ARTICLE_BLOCK_XPATH + ")[" + i + "]" + ARTICLE_LINK_XPATH;
+            try {
+                WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+                String href = el.getAttribute("href");
+                if (href != null && !href.isBlank()) links.add(href);
+            } catch (Exception ignored) {}
+        });
+        return links;
     }
 
     private Article scrapeArticle(String url, int imageIndex) {
-        int maxRetries = 3;
         int attempt = 0;
-        
-        while (attempt < maxRetries) {
+        while (attempt++ < MAX_RETRY) {
             try {
                 driver.get(url);
-                
-                handleCookiePopup();
-                
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(ARTICLE_TITLE_TAG)));
-                
-                String title = driver.findElement(By.tagName(ARTICLE_TITLE_TAG)).getText();
-                String content = extractArticleContent();
-                
+                handleCookie();
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(TITLE_TAG)));
+
+                String title = driver.findElement(By.tagName(TITLE_TAG)).getText();
+                String content = extractContent();
+
                 String imageUrl = null;
                 try {
-                    WebElement imageElement = driver.findElement(By.xpath(ARTICLE_IMAGE_XPATH));
-                    imageUrl = imageElement.getAttribute("src");
-                    if (imageUrl != null && !imageUrl.trim().isEmpty()) {
+                    WebElement img = driver.findElement(By.xpath(IMAGE_XPATH));
+                    imageUrl = img.getAttribute("src");
+                    if (imageUrl != null && !imageUrl.isBlank()) {
                         String fileName = IMAGE_FOLDER + "image" + imageIndex + ".jpg";
                         Utils.downloadImage(imageUrl, fileName);
-                        System.out.println("[INFO] Downloaded image for article " + imageIndex);
                     }
-                } catch (NoSuchElementException e) {
-                    System.out.println("[INFO] No image found for article " + imageIndex);
-                }
-                
-                System.out.println("[INFO] Successfully scraped article: " + title);
-                System.out.println("[DEBUG] Content length: " + content.length() + " characters");
+                } catch (NoSuchElementException ignored) {}
+
                 return new Article(title, content, imageUrl);
-                
-            } catch (StaleElementReferenceException se) {
-                attempt++;
-                if (attempt >= maxRetries) {
-                    System.err.println("[ERROR] Stale element for article after " + maxRetries + " attempts: " + url + " - " + se.getMessage());
-                    throw se;
-                }
-                System.err.println("[WARNING] Stale element, retrying (" + attempt + "/" + maxRetries + "): " + url);
-                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+
             } catch (Exception e) {
-                attempt++;
-                if (attempt >= maxRetries) {
-                    System.err.println("[ERROR] Failed to scrape article after " + maxRetries + " attempts: " + url + " - " + e.getMessage());
-                    throw e;
-                }
-                System.err.println("[WARNING] Error scraping article, retrying (" + attempt + "/" + maxRetries + "): " + url + " - " + e.getMessage());
-                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); } 
+                try { Thread.sleep(RETRY_DELAY); } catch (InterruptedException ignored) {}
             }
         }
-        
-        throw new RuntimeException("Failed to scrape article after " + maxRetries + " attempts: " + url);
+        throw new RuntimeException("Failed to scrape article after retries: " + url);
     }
 
-    private String extractArticleContent() {
-        StringBuilder content = new StringBuilder();
-        
-        try {
-            List<WebElement> paragraphElements = driver.findElements(By.xpath(ARTICLE_PARAGRAPH_XPATH));
-            for (WebElement paragraphElement : paragraphElements) {
-                String paragraphText = paragraphElement.getText();
-                if (paragraphText != null && !paragraphText.trim().isEmpty()) {
-                    content.append(paragraphText).append("\n");
-                }
-            }
-            
-            if (content.length() > 100) {
-                System.out.println("[DEBUG] Content extracted using default XPath: " + content.length() + " characters");
-                return content.toString();
-            }
-        } catch (Exception e) {
-            System.out.println("[DEBUG] Default XPath failed: " + e.getMessage());
+    private String extractContent() {
+        for (String xpath : FALLBACK_XPATHS) {
+            try {
+                List<WebElement> paras = driver.findElements(By.xpath(xpath));
+                StringBuilder content = new StringBuilder();
+                for (WebElement p : paras) content.append(p.getText()).append("\n");
+                if (content.length() > 100) return content.toString();
+            } catch (Exception ignored) {}
         }
-        
         try {
-            List<WebElement> bodyElements = driver.findElements(By.xpath("//article//div[contains(@class,'article-body')]//p"));
-            if (bodyElements.isEmpty()) {
-                bodyElements = driver.findElements(By.xpath("//article//div[contains(@class,'article-body')]"));
-            }
-            
-            for (WebElement element : bodyElements) {
-                String text = element.getText();
-                if (text != null && !text.trim().isEmpty()) {
-                    content.append(text).append("\n");
-                }
-            }
-            
-            if (content.length() > 100) {
-                System.out.println("[DEBUG] Content extracted using article-body: " + content.length() + " characters");
-                return content.toString();
-            }
-        } catch (Exception e) {
-            System.out.println("[DEBUG] Article-body XPath failed: " + e.getMessage());
-        }
-        
-        try {
-            List<WebElement> testElements = driver.findElements(By.xpath("//div[@data-testid='article-content']//p"));
-            if (testElements.isEmpty()) {
-                testElements = driver.findElements(By.xpath("//div[@data-testid='article-content']"));
-            }
-            
-            for (WebElement element : testElements) {
-                String text = element.getText();
-                if (text != null && !text.trim().isEmpty()) {
-                    content.append(text).append("\n");
-                }
-            }
-            
-            if (content.length() > 100) {
-                System.out.println("[DEBUG] Content extracted using data-testid: " + content.length() + " characters");
-                return content.toString();
-            }
-        } catch (Exception e) {
-            System.out.println("[DEBUG] Data-testid XPath failed: " + e.getMessage());
-        }
-        
-        try {
-            List<WebElement> divElements = driver.findElements(By.xpath("//article//div[contains(@class,'content') or contains(@class,'text') or contains(@class,'body')]//p"));
-            if (divElements.isEmpty()) {
-                divElements = driver.findElements(By.xpath("//article//div[contains(@class,'content') or contains(@class,'text') or contains(@class,'body')]"));
-            }
-            
-            for (WebElement element : divElements) {
-                String text = element.getText();
-                if (text != null && !text.trim().isEmpty()) {
-                    content.append(text).append("\n");
-                }
-            }
-            
-            if (content.length() > 100) {
-                System.out.println("[DEBUG] Content extracted using generic div: " + content.length() + " characters");
-                return content.toString();
-            }
-        } catch (Exception e) {
-            System.out.println("[DEBUG] Generic div XPath failed: " + e.getMessage());
-        }
-        
-        try {
-            WebElement articleElement = driver.findElement(By.tagName("article"));
-            if (articleElement != null) {
-                String allText = articleElement.getText();
-                if (allText != null && allText.length() > 100) {
-                    System.out.println("[DEBUG] Content extracted using all article text: " + allText.length() + " characters");
-                    return allText;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("[DEBUG] All article text failed: " + e.getMessage());
-        }
-        System.err.println("[WARNING] No content found for article: " + driver.getCurrentUrl());
+            WebElement article = driver.findElement(By.tagName("article"));
+            String text = article.getText();
+            if (text.length() > 100) return text;
+        } catch (Exception ignored) {}
         return "[NO CONTENT FOUND]";
     }
-} 
+}
